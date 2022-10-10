@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
-
+#define PI 3.14159265
 using namespace std;
 
 void lab1(function<double(vector<double>)> operation, vector<double> numbers) {
@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     vector<double> argNumbers;
     map<string, map<string, function<double(vector<double>)>>> operations;
 
-    operations["lab1"]["sin"] = [](vector<double> numbers) { return sin(numbers[0]); };
+    operations["lab1"]["sin"] = [](vector<double> numbers) { return sin(numbers[0]*PI/180); };
     operations["lab1"]["mod"] = [](vector<double> numbers) { return fmod(numbers[0], numbers[1]); };
     operations["lab1"]["add"] = [](vector<double> numbers) { return numbers[0] + numbers[1]; };
 
