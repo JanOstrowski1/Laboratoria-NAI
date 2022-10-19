@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <random>
+#include <chrono>
+using namespace std::chrono;
 
 std::random_device rd;
 std::mt19937 mt_generator(rd());
@@ -25,6 +27,8 @@ auto coords_generator(double r1, double r2) {
 }
 
 int main() {
+    auto start = high_resolution_clock::now();
+
     auto bealeFunc = [](std::pair<double, double> pair) {
         return pow(1.5 - pair.first + pair.first * pair.second, 2) +
                pow(2.25 - pair.first + pair.first * pow(pair.second, 2), 2) +
@@ -49,6 +53,12 @@ int main() {
 
     auto bestMatyas = brute_force(matyasFunc, coords_generator, 1000000, -10, 10);
     std::cout << "Best Matyas x = " << bestMatyas.first << " y = " << bestMatyas.second<< " | result: " << matyasFunc(bestMatyas)<< std::endl << std::endl;
+
+    auto stop = high_resolution_clock::now();
+
+    auto duration = duration_cast<microseconds>(stop - start);
+
+    std::cout << duration.count() << std::endl;
 
     return 0;
 }
