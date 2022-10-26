@@ -1,0 +1,1 @@
+CMakeLists.txt not found in C:\Users\s23820\Laboratoria-NAI\lab2 Select CMakeLists.txt

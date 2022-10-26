@@ -34,7 +34,6 @@ auto hill_climbing = [](auto f, auto domain, int max_iterations, double minimal_
         std::pair<double, double> neighbour_p = domain(minimal_d / 100, maximal_d / 100);
         new_p.first = current_p.first + neighbour_p.first;
         new_p.second = current_p.second + neighbour_p.second;
-
         if (f(current_p) > f(new_p)) {
             current_p = new_p;
         }
@@ -133,6 +132,6 @@ int main() {
     std::vector<std::function<double(std::pair<double, double> pair)>> functions = {boothFunc, matyasFunc,
                                                                                     treeHumpCamelFunc};
     std::vector<std::string> functionNames = {"Booth", "Matyas", "Tree Hump Camel"};
-    printResults(functions, functionNames, 1000);
+    printResults(functions, functionNames, 100000);
     return 0;
 }
