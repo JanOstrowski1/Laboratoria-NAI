@@ -120,7 +120,7 @@ int main() {
 
     auto holderTableFunc = [](std::pair<double, double> pair) {
         double x = pair.first, y = pair.second;
-        return 0.26 * (pow(x, 2) + pow(y, 2) - 0.48 * x * y);
+        return -abs(sin(x) * cos(y) * exp(abs(1 - (sqrt(pow(x, 2) + pow(y, 2)))/M_PI)));
     };
 
     auto treeHumpCamelFunc = [](std::pair<double, double> pair) {
@@ -129,7 +129,7 @@ int main() {
     };
     std::vector<std::function<double(std::pair<double, double> pair)>> functions = {boothFunc, holderTableFunc,
                                                                                     treeHumpCamelFunc};
-    std::vector<std::string> functionNames = {"Booth", "Matyas", "Tree Hump Camel"};
+    std::vector<std::string> functionNames = {"Booth", "Holder table", "Tree Hump Camel"};
     std::vector<std::pair<double, double>> domain_range = {{-10, 10},
                                                            {-10, 10},
                                                            {-5,  5}};
