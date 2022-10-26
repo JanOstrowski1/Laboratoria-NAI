@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/janos/Programowanie/semestr5/Laboratoria-NAI/lab3/main.cpp
+iostream
+-
+random
+-
+cmath
+-
+functional
+-
+chrono
+-
+
