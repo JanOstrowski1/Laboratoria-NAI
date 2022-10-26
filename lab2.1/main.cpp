@@ -60,7 +60,7 @@ int main() {
 
     for (int i = 1; i <= 20; i++) {
         auto start = high_resolution_clock::now();
-        auto bestBooth = brute_force(boothFunc, 1000000, -10, 10);
+        auto bestBooth = random_probe(boothFunc, 1000000, -10, 10);
         std::cout <<"I : " <<i << " | Best Booth x = " << bestBooth.first << " y = " << bestBooth.second << " | result: "
                   << boothFunc(bestBooth);
         auto stop = high_resolution_clock::now();
@@ -72,7 +72,7 @@ int main() {
 
     for (int i = 1; i <= 20; i++) {
         auto start = high_resolution_clock::now();
-        auto bestMatyas = brute_force(matyasFunc, 1000000, -10, 10);
+        auto bestMatyas = random_probe(matyasFunc, 1000000, -10, 10);
         std::cout <<"I : " <<i << " | Best Matyas x = " << bestMatyas.first << " y = " << bestMatyas.second << " | result: "
                   << matyasFunc(bestMatyas);
         auto stop = high_resolution_clock::now();
@@ -85,7 +85,7 @@ int main() {
 
     for (int i = 1; i <= 20; i++) {
         auto start = high_resolution_clock::now();
-        auto bestTreeHumpCamel = brute_force(treeHumpCamelFunc,  1000000, -5, 5);
+        auto bestTreeHumpCamel = random_probe(treeHumpCamelFunc,  1000000, -5, 5);
         std::cout <<"I : " <<i << " | Best Three-hump camel  x = " << bestTreeHumpCamel.first << " y = " << bestTreeHumpCamel.second
                   << " | result: "
                   << treeHumpCamelFunc(bestTreeHumpCamel);
