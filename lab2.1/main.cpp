@@ -12,7 +12,7 @@ auto coords_generator(double r1, double r2) {
     std::uniform_real_distribution<> coords(r1, r2);
     return std::pair<double, double>(coords(mt_generator), coords(mt_generator));
 }
-auto brute_force = [](auto f,  int iterations, double r1, double r2) {
+auto random_probe = [](auto f,  int iterations, double r1, double r2) {
     auto current_p = coords_generator(r1, r2);
     auto best_point = current_p;
 
@@ -20,6 +20,7 @@ auto brute_force = [](auto f,  int iterations, double r1, double r2) {
         if (f(current_p) < f(best_point)) {
             best_point = current_p;
         }
+        auto stop = high_resolution_clock::now();
         current_p = coords_generator(r1, r2);
     }
 
