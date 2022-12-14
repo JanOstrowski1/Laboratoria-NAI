@@ -15,13 +15,7 @@ bool compareContourAreas(vector<Point> contour1, vector<Point> contour2) {
 int main(int argc, char **argv) {
     vector<int> lower = {0, 141, 87};
     vector<int> upper = {15, 255, 255};
-    namedWindow("options", cv::WINDOW_AUTOSIZE);
-    createTrackbar("lh", "options", &lower[0], 255);
-    createTrackbar("ls", "options", &lower[1], 255);
-    createTrackbar("lv", "options", &lower[2], 255);
-    createTrackbar("hh", "options", &upper[0], 255);
-    createTrackbar("hs", "options", &upper[1], 255);
-    createTrackbar("hv", "options", &upper[2], 255);
+
 
     VideoCapture camera(0);
     if (!camera.isOpened())
@@ -33,7 +27,6 @@ int main(int argc, char **argv) {
         camera.read(src_img);
         Mat bw_img;
         Mat red_img;
-        Mat img_edges;
 
         cvtColor(src_img, bw_img, COLOR_BGR2HSV);
         inRange(bw_img, Scalar(lower[0], lower[1], lower[2]), Scalar(upper[0], upper[1], upper[2]), red_img);
@@ -60,21 +53,16 @@ int main(int argc, char **argv) {
             auto m = moments(biggest, false);
             Point p = {(int) (m.m10 / m.m00), (int) (m.m01 / m.m00)};
             Point p_2 = {(int) ((m.m10 / m.m00) - 4), (int) ((m.m01 / m.m00) - 4)};
-            int x = (int) (m.m10 / m.m00);
-            int y = (int) (m.m01 / m.m00);
             ellipse(src_img, p, Size{5, 5}, 0.0, 0, 360, {0, 255, 255}, 3);
 
             auto m1 = moments(secondBiggest, false);
             Point p1 = {(int) (m1.m10 / m1.m00), (int) (m1.m01 / m1.m00)};
             Point p1_2 = {(int) ((m1.m10 / m1.m00) - 4), (int) ((m1.m01 / m1.m00) - 4)};
-            int x1 = (int) (m1.m10 / m1.m00);
-            int y1 = (int) (m1.m01 / m1.m00);
             ellipse(src_img, p1, Size{5, 5}, 0.0, 0, 360, {0, 255, 255}, 3);
 
-            if (abs(y1 - y) < 20) {
-                line(src_img, p, p1, cv::Scalar(255, 0, 0), 2, cv::LINE_8);
-                line(src_img, p_2, p1_2, cv::Scalar(0, 255, 0), 2, cv::LINE_8);
-            }
+            line(src_img, p, p1, cv::Scalar(255, 0, 0), 2, cv::LINE_8);
+            line(src_img, p_2, p1_2, cv::Scalar(0, 255, 0), 2, cv::LINE_8);
+
         }
 
         imshow("red detection", src_img);
